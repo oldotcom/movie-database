@@ -60,10 +60,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         films.forEach((film, i) => {
             parent.innerHTML += `
-                <li class="promo__interactive-item">
-                    ${i + 1}. ${film};
+                <li class="promo__interactive-item">${i + 1}. ${film};
+                    <div class="delete"></div>
                 </li>
             `;
+        });
+
+        document.querySelectorAll('.delete').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                movieDB.movies.splice(i, 1);
+            });
         });
     }
 
