@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createMovieList(films, parent) {
         parent.innerHTML = "";
+        sortArr(films);
         
         films.forEach((film, i) => {
             parent.innerHTML += `
@@ -70,12 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => {
                 btn.parentElement.remove();
                 movieDB.movies.splice(i, 1);
+
+                createMovieList(films, parent); 
             });
         });
     }
 
     deleteAdv(adv);
     makeChanges();
-    sortArr(movieDB.movies);
     createMovieList(movieDB.movies, movieList);
 });
